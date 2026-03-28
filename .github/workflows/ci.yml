@@ -1,0 +1,30 @@
+name: CI - Práctica GitHub Actions
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  saludo:
+    name: Saludo desde GitHub Actions
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Mostrar mensaje de bienvenida
+        run: echo "¡Hola desde GitHub Actions! El workflow se ejecutó correctamente."
+
+      - name: Mostrar información del repositorio
+        run: |
+          echo "Repositorio: ${{ github.repository }}"
+          echo "Rama: ${{ github.ref_name }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Evento: ${{ github.event_name }}"
